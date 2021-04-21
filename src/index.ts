@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
 import express from 'express';
+import 'express-async-errors';
+
+import './database';
 
 import router from './routes';
 import errorHandler from './middlewares/ErrorHandler';
