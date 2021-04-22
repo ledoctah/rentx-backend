@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 
-import users from './users';
-import session from './session';
+import users from '@modules/users/infra/http/routes/users.routes';
+import session from '@modules/users/infra/http/routes/session.routes';
 
 const router = Router();
 

@@ -1,8 +1,12 @@
 /* eslint-disable no-console */
+import 'reflect-metadata';
+import 'dotenv/config';
+
 import express from 'express';
 import 'express-async-errors';
 
-import './database';
+import '@shared/infra/typeorm';
+import '@shared/container';
 
 import router from './routes';
 import errorHandler from './middlewares/ErrorHandler';

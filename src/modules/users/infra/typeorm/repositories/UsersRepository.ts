@@ -1,11 +1,11 @@
-import { EntityRepository, getRepository, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
-import ICreateUserDTO from '../dtos/ICreateUserDTO';
+import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '../entities/User';
 
-@EntityRepository()
-export default class UsersRepository {
+export default class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
 
   constructor() {

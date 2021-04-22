@@ -6,13 +6,12 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [
-    "./src/app/entities/*.ts",
+    "./src/modules/**/infra/typeorm/entities/*.ts",
   ],
   migrations: [
-    "./src/database/migrations/*.ts",
+    "./src/shared/infra/typeorm/migrations/*.ts",
   ],
   cli: {
-    migrationsDir: "./src/database/migrations",
-  },
-  synchronize: false,
+    migrationsDir: "./src/shared/infra/typeorm/migrations",
+  }
 }

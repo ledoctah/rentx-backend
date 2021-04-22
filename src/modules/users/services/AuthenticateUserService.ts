@@ -1,10 +1,13 @@
 import { sign } from 'jsonwebtoken';
+import { inject, injectable } from 'tsyringe';
 
-import AppError from '../../errors/AppError';
-import authConfig from '../config/auth';
-import User from '../entities/User';
-import BcryptHashProvider from '../provider/BCryptHashProvider';
-import UsersRepository from '../repositories/UsersRepository';
+import authConfig from '@config/auth';
+
+import AppError from '@shared/errors/AppError';
+
+import User from '@modules/users/infra/typeorm/entities/User';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
   email: string;
@@ -17,23 +20,28 @@ interface IResponse {
   token: string;
 }
 
-export default class AuthenticateUserService {
+@injectable()
+class AuthenticateUserService {
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
+  ) {}
+
   public async execute({
     email,
     password,
     rememberMe = false,
   }: IRequest): Promise<IResponse> {
-    console.log(rememberMe);
-    const usersRepository = new UsersRepository();
-    const hashProvider = new BcryptHashProvider();
-
-    const user = await usersRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('Incorrect email/password combination', 401);
     }
 
-    const isPasswordCorrect = await hashProvider.compareHash(
+    const isPasswordCorrect = await this.hashProvider.compareHash(
       password,
       user.password,
     );
@@ -55,3 +63,5 @@ export default class AuthenticateUserService {
     };
   }
 }
+
+export default AuthenticateUserService;
