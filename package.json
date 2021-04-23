@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "seeds": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seeds"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
