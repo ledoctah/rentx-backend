@@ -24,17 +24,19 @@ const companies = [
 const runSeeds = async (): Promise<void> => {
   const companiesRepository = getConnection().getRepository('companies');
 
-  companies.forEach(async company => {
-    const found = await companiesRepository.findOne({
-      where: {
-        name: company.name,
-      },
-    });
+  await Promise.all(
+    companies.map(async company => {
+      const found = await companiesRepository.findOne({
+        where: {
+          name: company.name,
+        },
+      });
 
-    if (!found) {
-      companiesRepository.save(company);
-    }
-  });
+      if (!found) {
+        await companiesRepository.save(company);
+      }
+    }),
+  );
 };
 
 export default runSeeds;
