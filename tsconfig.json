@@ -7,25 +7,16 @@
     "strict": true,
     "baseUrl": "./src",
     "strictPropertyInitialization": false,
+    "allowJs": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ]
-    },
-  },
-  "exclude": [
-    "prettier.config.js",
-    "dist/*"
-  ]
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"]
+    }
+  }
 }
