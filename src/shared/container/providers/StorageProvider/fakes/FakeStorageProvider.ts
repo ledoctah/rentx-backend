@@ -1,6 +1,6 @@
 import IStorageProvider from '../models/IStorageProvider';
 
-class FakeProvider implements IStorageProvider {
+class FakeStorageProvider implements IStorageProvider {
   private storage: string[] = [];
 
   public async saveFile(file: string): Promise<string> {
@@ -18,4 +18,4 @@ class FakeProvider implements IStorageProvider {
   }
 }
 
-export default FakeProvider;
+export default FakeStorageProvider;

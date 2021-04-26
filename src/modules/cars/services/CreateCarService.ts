@@ -60,6 +60,10 @@ export default class CreateCarService {
     transmission_id,
     files,
   }: IRequest): Promise<Car> {
+    if (!files[0]) {
+      throw new AppError('At least one photo needs to be provided');
+    }
+
     const company = await this.companiesRepository.findById(company_id);
 
     if (!company) {
