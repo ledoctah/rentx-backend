@@ -20,7 +20,7 @@ export default class Car {
   id: string;
 
   @Column({ length: '64' })
-  name: 'string';
+  name: string;
 
   @Column({ type: 'integer' })
   top_speedKM: number;
@@ -35,7 +35,7 @@ export default class Car {
   about: string;
 
   @Column('integer')
-  capacity: string;
+  capacity: number;
 
   @Column({ type: 'varchar', length: '8' })
   daily_price: string;
