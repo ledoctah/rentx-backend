@@ -18,5 +18,10 @@
       "@config/*": ["config/*"],
       "@shared/*": ["shared/*"]
     }
-  }
+  },
+  "exclude": [
+    "coverage",
+    "dist",
+    "node_modules"
+  ]
 }
