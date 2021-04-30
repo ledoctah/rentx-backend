@@ -95,11 +95,11 @@ export default class CreateCarService {
     const car = await this.carsRepository.create({
       name,
       top_speedKM,
-      acceleration: String(acceleration).replace(/\D/g, ''),
+      acceleration: (acceleration * 100).toFixed(0),
       power,
       about,
       capacity,
-      daily_price: String(daily_price).replace(/\D/g, ''),
+      daily_price: (daily_price * 100).toFixed(0),
       company_id: company.id,
       fuel_id: fuel.id,
       transmission_id: transmission.id,
