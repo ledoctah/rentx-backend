@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Expose } from 'class-transformer';
 
 import Company from '@modules/companies/infra/typeorm/entities/Company';
 import Fuel from '@modules/fuels/infra/typeorm/entities/Fuel';
@@ -28,6 +29,11 @@ export default class Car {
   @Column()
   acceleration: string;
 
+  @Expose({ name: 'acceleration' })
+  getAcceleration(): number {
+    return Number(this.acceleration) / 100;
+  }
+
   @Column('integer')
   power: number;
 
@@ -39,6 +45,11 @@ export default class Car {
 
   @Column({ type: 'varchar', length: '8' })
   daily_price: string;
+
+  @Expose({ name: 'daily_price' })
+  getDailyPrice(): number {
+    return Number(this.daily_price) / 100;
+  }
 
   @Column({ type: 'uuid' })
   company_id: string;
